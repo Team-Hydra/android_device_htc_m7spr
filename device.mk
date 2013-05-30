@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2011 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,19 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_DEVICE),m7spr)
+# call the proprietary setup
+$(call inherit-product-if-exists, vendor/htc/m7spr/m7spr-vendor.mk)
 
-LOCAL_PATH := $(call my-dir)
-include $(call all-subdir-makefiles,$(LOCAL_PATH))
+# overlays
+DEVICE_PACKAGE_OVERLAYS += device/htc/m7spr/overlay
 
-endif
+# common overlays
+DEVICE_PACKAGE_OVERLAYS += device/htc/m7-common/overlay-cdma
+
+# Sprint properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.clientidbase=android-sprint-us \
+    ro.carrier=Sprint
+
+# Inherit from m7-common
+$(call inherit-product, device/htc/m7-common/m7-common.mk)

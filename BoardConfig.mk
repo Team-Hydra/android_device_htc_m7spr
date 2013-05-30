@@ -27,8 +27,18 @@
 # inherit from common m7-common
 -include device/htc/m7-common/BoardConfigCommon.mk
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := m7wls,m7spr
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := m7wls
+
+# Filesystem
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1946156032
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 27917287424
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 # cat /proc/emmc:
 # dev: size erasesize name
@@ -55,11 +65,6 @@ TARGET_BOOTLOADER_BOARD_NAME := m7wls
 # mmcblk0p32: 034ffa00 00000200 "reserve_2"
 # mmcblk0p34: 05fffc00 00000200 "reserve_3"
 # mmcblk0p31: 04729a00 00000200 "reserve"
-BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16776704
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1946156032
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 27917287424
-BOARD_FLASH_BLOCK_SIZE := 131072
 
 # inherit from the proprietary version
--include vendor/htc/m7wls/BoardConfigVendor.mk
+-include vendor/htc/m7spr/BoardConfigVendor.mk
